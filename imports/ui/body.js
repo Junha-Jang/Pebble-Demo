@@ -1,0 +1,31 @@
+import { Template } from 'meteor/templating';
+
+import { Posts, get_max } from '../api/posts.js';
+
+import './post.js';
+import './body.html';
+
+Template.body.helpers({
+    posts(){
+        return Posts.find({}, {sort: {createdAt: -1}});
+    }
+});
+
+Template.body.events({
+    "submit .new-post"(event){
+        event.preventDefault();
+        const target = event.target;
+        const title = target.text.value;
+        const index = get_max() + 1;
+
+        Posts.insert({
+            post_id: index.toString(),
+            title: title,
+            author: 'Ghost',
+            author_id: '123asd',
+            createdAt: new Date(),
+        })
+
+        target.text.value='';
+    }
+})
