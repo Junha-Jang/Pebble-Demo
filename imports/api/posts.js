@@ -9,12 +9,12 @@ export function get_max(){
     Posts.find({}, {
         sort: {post_id:-1},
         limit: 1
-        }).forEach((doc)=>{
+    }).forEach((doc)=>{
         ans = Math.max(ans, doc.post_id);
     });
     return ans;
 };
 
 // collection looks like :
-// post_id, title, author, author_id, createdAt
+// post_id, title, author, author_id, createdAt, contents
 // TODO : make tags

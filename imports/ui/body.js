@@ -24,6 +24,9 @@ Template.body.events({
             author: 'Ghost',
             author_id: '123asd',
             createdAt: new Date(),
+            contents: 'This is very Dummy text.\
+            Lorem Ipsum dolor sit amet...... NOPE!\
+            BTW, this post\'s id is ' + index.toString() ,
         })
 
         target.text.value='';
