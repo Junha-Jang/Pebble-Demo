@@ -1,17 +1,16 @@
 import { Template } from 'meteor/templating';
 
-import { Posts, get_max } from '../api/posts.js';
+import { Posts, get_max } from '../../api/posts.js';
 
-import './post.js';
-import './body.html';
+import './stream.html';
 
-Template.body.helpers({
+Template.stream.helpers({
     posts(){
         return Posts.find({}, {sort: {createdAt: -1}});
     }
 });
 
-Template.body.events({
+Template.stream.events({
     "submit .new-post"(event){
         event.preventDefault();
         const target = event.target;

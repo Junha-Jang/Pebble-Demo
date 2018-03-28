@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 
-import { Posts } from '../api/posts.js';
+import { Posts } from '../../api/posts.js';
 
-import './post.html';
+import './post-stream.html';
 
-Template.post.events({
+Template.postStream.events({
     "click .delete"(){
         Posts.remove(this._id);
     }
-})
+});
