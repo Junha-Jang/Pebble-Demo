@@ -1,1 +1,1 @@
-import '../imports/api/posts.js';
+import '../imports/api/postColl.js';
