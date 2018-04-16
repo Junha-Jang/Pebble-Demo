@@ -1,3 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 
-export const postColl = new Mongo.Collection('posts');
+const postColl = new Mongo.Collection('posts');
+
+export default postColl;
+
+// post_id, title, summary (not ordered)
