@@ -1,44 +1,59 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import ReactQuill from 'react-quill';
 
 import postColl from '../api/postColl.js';
 
 class PostForm extends Component {
+    constructor(props) {
+        super(props);
+
+        this.titleInput = React.createRef();
+        this.quillInput = React.createRef();
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
-        const titleNode = ReactDOM.findDOMNode(this.refs.titleInput);
-        const summaryNode = ReactDOM.findDOMNode(this.refs.summaryInput);
+        const titleNode = this.titleInput.current;
+        let quillNode = this.quillInput.current;
 
         const title = titleNode.value.trim();
-        const summary = summaryNode.value.trim();
+        const content = quillNode.getEditor().getText();
 
         postColl.insert({
             title,
-            summary,
+            summary: "This is a common summary.",
+            content,
             createdAt: new Date()
         });
 
         titleNode.value = '';
-        summaryNode.value = '';
+
+        // doesn't work
+        quillNode.state.value = 'NAH.';
     }
 
     render() {
         return (
-            <form className="new-post" onSubmit={this.handleSubmit.bind(this)} >
+            <form id="postForm" className="new-post" onSubmit={this.handleSubmit.bind(this)} >
                 <input
                     type="text"
-                    ref="titleInput"
+                    ref={this.titleInput}
                     placeholder="Type a title"
                 />
                 <br/>
-                <input
-                    type="text"
-                    ref="summaryInput"
-                    placeholder="Type a summary"
+                <ReactQuill
+                    ref={this.quillInput}
+                    defaultValue="<p>Type a content for your new post!</p>"
                 />
                 <br/>
-                <input type="submit" value="submit"/>
+                <button
+                    className="btn waves-effect"
+                    type="submit"
+                    form="postForm"
+                    value="Submit">
+                    Submit
+                </button>
             </form>
         );
     }
