@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import postColl from '../api/postColl.js'
+import postColl from '../../api/postColl.js'
 
-import Post from './Post.js';
-import PostForm from './PostForm.js';
+import Post from './Post';
+import PostForm from './PostForm';
 
 class Stream extends Component {
     renderPosts() {
         return this.props.posts.map((post) => (
-            <Post post={post} key={post._id}/>
+            <Post post={post} key={post._id} />
         ));
     }
 
@@ -20,10 +20,10 @@ class Stream extends Component {
                     <h1>Stream</h1>
                 </header>
 
-                <PostForm/>
+                <PostForm />
 
                 <div className="row">
-                    <div className="col s12 m12">
+                    <div className="col s12 m12 l12">
                         <ul>
                             {this.renderPosts()}
                         </ul>

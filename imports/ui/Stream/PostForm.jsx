@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 
-import postColl from '../api/postColl.js';
+import postColl from '../../api/postColl.js';
 
 class PostForm extends Component {
     constructor(props) {
@@ -9,16 +9,18 @@ class PostForm extends Component {
 
         this.titleInput = React.createRef();
         this.quillInput = React.createRef();
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
         const titleNode = this.titleInput.current;
-        let quillNode = this.quillInput.current;
+        const quillEditor = this.quillInput.current.getEditor();
 
         const title = titleNode.value.trim();
-        const content = quillNode.getEditor().getText();
+        const content = quillEditor.getText();
 
         postColl.insert({
             title,
@@ -28,9 +30,7 @@ class PostForm extends Component {
         });
 
         titleNode.value = '';
-
-        // doesn't work
-        quillNode.state.value = 'NAH.';
+        quillEditor.setText('');
     }
 
     render() {
@@ -41,12 +41,12 @@ class PostForm extends Component {
                     ref={this.titleInput}
                     placeholder="Type a title"
                 />
-                <br/>
+                <br />
                 <ReactQuill
                     ref={this.quillInput}
-                    defaultValue="<p>Type a content for your new post!</p>"
+                    placeholder="Type for your new post!"
                 />
-                <br/>
+                <br />
                 <button
                     className="btn waves-effect"
                     type="submit"
