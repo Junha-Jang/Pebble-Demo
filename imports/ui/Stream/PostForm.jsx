@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 
-import postColl from '../../api/postColl.js';
+import { insertPost } from '../../api/postColl.js';
 
 class PostForm extends Component {
     constructor(props) {
@@ -22,12 +22,13 @@ class PostForm extends Component {
         const title = titleNode.value.trim();
         const content = quillEditor.getText();
 
-        postColl.insert({
+        const post = {
             title,
             summary: "This is a common summary.",
             content,
             createdAt: new Date()
-        });
+        };
+        insertPost(post);
 
         titleNode.value = '';
         quillEditor.setText('');
@@ -35,7 +36,7 @@ class PostForm extends Component {
 
     render() {
         return (
-            <form id="postForm" className="new-post" onSubmit={this.handleSubmit.bind(this)} >
+            <form id="postForm" className="new-post" onSubmit={this.handleSubmit} >
                 <input
                     type="text"
                     ref={this.titleInput}

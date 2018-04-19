@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import postColl from '../../api/postColl.js';
 
@@ -26,10 +27,11 @@ class Post extends Component {
                     <p> {`Summary: ${post.summary}`} </p>
                     <p> {`Full Content: ${post.content}`} </p>
                     <p> {`Created At: ${post.createdAt}`} </p>
+                    <p> {`Post id: ${post.post_id}`} </p>
                 </div>
                 
                 <div className="card-action">
-                    <a href="#">자세히 보기 (누르지 말 것!)</a>
+                    <Link to={`/stream/${post.post_id}`}>자세히 보기</Link>
                     <a href="#" onClick={this.deleteThisPost}>지우기</a>
                 </div>
             </div>

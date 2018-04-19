@@ -1,41 +1,22 @@
-import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import postColl from '../../api/postColl.js'
+import StreamRoot from './StreamRoot.jsx';
+import StreamView from './StreamView/StreamView.jsx';
 
-import Post from './Post';
-import PostForm from './PostForm';
+const Stream = () => {
+    return (
+        <div className="container">
+            <header>
+                <h1>Stream</h1>
+            </header>
 
-class Stream extends Component {
-    renderPosts() {
-        return this.props.posts.map((post) => (
-            <Post post={post} key={post._id} />
-        ));
-    }
-
-    render() {
-        return (
-            <div className="container">
-                <header>
-                    <h1>Stream</h1>
-                </header>
-
-                <PostForm />
-
-                <div className="row">
-                    <div className="col s12 m12 l12">
-                        <ul>
-                            {this.renderPosts()}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+            <Switch>
+                <Route exact path="/stream" component={StreamRoot} />
+                <Route path="/stream/:index" component={StreamView} />
+            </Switch>
+        </div>  
+    );
 }
 
-export default withTracker(() => {
-    return {
-        posts: postColl.find({}, { sort: { createdAt: -1 } }).fetch()
-    };
-})(Stream);
+export default Stream;
