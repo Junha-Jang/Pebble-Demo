@@ -4,8 +4,8 @@ import { Mongo } from 'meteor/mongo';
 
 import postColl from '../../api/postColl.js'
 
-import Post from './Post';
-import PostForm from './PostForm';
+import Post from '../components/Post';
+import PostForm from '../components/PostForm';
 
 class StreamRoot extends Component {
     renderPosts() {

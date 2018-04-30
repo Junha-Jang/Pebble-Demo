@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Mongo } from 'meteor/mongo';
+import ReactQuill from 'react-quill';
 
 import postColl, { findById } from '/imports/api/postColl.js';
 
-import Post from '../Post.jsx';
+import QuillReader from '../../components/QuillReader';
+
+// render하기 전에 미리 post를 로딩할 수는 없나?
+// withTracker는 render후에 동기화하는 작업인데, 여기서는 굳이 동기화는 필요없고 최초에 로딩만 하면 되는데...
 
 class StreamView extends Component {
     render(){
-        const post_id = Number(this.props.match.params.index);
-
-        let post = findById(post_id);
-        
-        // 페이지를 새로고침 할 경우 post를 찾지 못함.
-        if(post == undefined) post = { title: "Can't find post", post_id: 10 };
-
-        // console.log(post);
-
+        const post = this.props.post;
         return (
             <div>
-                <h4>Viewing Post</h4>
-                <Post post={post} />
+                <h3>Viewing Post</h3>
+                <br />
+                <h4>{this.props.post.title}</h4>
+                <QuillReader contents={this.props.post.content} />
             </div>
         )
     }
 }
 
-export default StreamView;
+export default withTracker((props) => {
+    const postId = Number(props.match.params.index);
+    const defaultPost = { title: "Post Not Found :(" };
+    return {
+        post: findById(postId) || defaultPost
+    };
+})(StreamView);

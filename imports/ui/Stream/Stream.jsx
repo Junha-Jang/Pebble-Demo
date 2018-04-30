@@ -15,7 +15,7 @@ const Stream = () => {
                 <Route exact path="/stream" component={StreamRoot} />
                 <Route path="/stream/:index" component={StreamView} />
             </Switch>
-        </div>  
+        </div>
     );
 }
 

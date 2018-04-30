@@ -20,7 +20,7 @@ class PostForm extends Component {
         const quillEditor = this.quillInput.current.getEditor();
 
         const title = titleNode.value.trim();
-        const content = quillEditor.getText();
+        const content = quillEditor.getContents();
 
         const post = {
             title,
@@ -46,10 +46,11 @@ class PostForm extends Component {
                 <ReactQuill
                     ref={this.quillInput}
                     placeholder="Type for your new post!"
+                    readOnly={this.props.readOnly}
                 />
                 <br />
                 <button
-                    className="btn waves-effect"
+                    className="btn waves-effect grey darken-4"
                     type="submit"
                     form="postForm"
                     value="Submit">
