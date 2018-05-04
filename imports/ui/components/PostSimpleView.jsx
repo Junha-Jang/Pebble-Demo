@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 import postColl, { removePost } from '../../api/postColl.js';
 
-class Post extends Component {
+// Post를 Materalize Card 형식으로 보여주는 Component
+// props = { post }, post: object
+
+class PostSimpleView extends Component {
     constructor(props) {
         super(props);
 
@@ -39,4 +42,4 @@ class Post extends Component {
     }
 }
 
-export default Post;
+export default PostSimpleView;

@@ -4,13 +4,13 @@ import { Mongo } from 'meteor/mongo';
 
 import postColl from '../../api/postColl.js'
 
-import Post from '../components/Post';
+import PostSimpleView from '../components/PostSimpleView';
 import PostForm from '../components/PostForm';
 
 class StreamRoot extends Component {
     renderPosts() {
         return this.props.posts.map((post) => (
-            <Post post={post} key={post._id} />
+            <PostSimpleView post={post} key={post._id} />
         ));
     }
 
