@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     render() {
@@ -10,8 +11,8 @@ class Header extends Component {
                     </a>
                     
                     <ul id="nav-mobile" className="right">
-                        <li><a href="/stream">Stream</a></li>
-                        <li><a href="#">Link 2</a></li>
+                        <li><Link to="/stream">Stream</Link></li>
+                        <li><Link to="/stulist">Student List</Link></li>
                         <li><a href="#">Link 3</a></li>
                     </ul>
                 </div>

@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 
-// postId, title, summary, content (not ordered)
+// { postId, title, summary, contents }
 
 const postColl = new Mongo.Collection('posts');
 
