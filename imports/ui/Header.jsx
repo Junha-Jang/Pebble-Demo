@@ -13,7 +13,7 @@ class Header extends Component {
                     <ul id="nav-mobile" className="right">
                         <li><Link to="/stream">Stream</Link></li>
                         <li><Link to="/stulist">Student List</Link></li>
-                        <li><a href="#">Link 3</a></li>
+                        <li><Link to="/vote">Vote</Link></li>
                     </ul>
                 </div>
             </nav>

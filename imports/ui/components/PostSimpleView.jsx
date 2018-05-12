@@ -17,7 +17,7 @@ class PostSimpleView extends Component {
         event.preventDefault();
 
         // 지우는 모션 (fade out같은거)를 넣으면 좋겠다.
-        let _id = this.props.post._id;
+        const _id = this.props.post._id;
         removePost(_id);
     }
     

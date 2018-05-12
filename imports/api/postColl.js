@@ -13,14 +13,15 @@ function lastIndex() {
     return ret;
 }
 
-function insertPost(post) {
-    let newIndex = lastIndex() + 1;
+function makePost(post) {
+    // 인자 검증
+    const newIndex = lastIndex() + 1;
     post.postId = newIndex;
     postColl.insert(post);
 }
 
-function findById(postId) {
-    let post = postColl.findOne({ postId: postId })
+function getPost(postId) {
+    const post = postColl.findOne({ postId: postId });
     return post;
 }
 
@@ -29,4 +30,4 @@ function removePost(_id) {
 }
 
 export default postColl;
-export { insertPost, findById, removePost };
+export { makePost, getPost, removePost };

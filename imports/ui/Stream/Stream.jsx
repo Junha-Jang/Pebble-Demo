@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import StreamRoot from './StreamRoot.jsx';
-import StreamDetail from './StreamDetail/StreamDetail.jsx';
+import StreamRoot from './StreamRoot';
+import StreamDetail from './StreamDetail/StreamDetail';
 
 const Stream = () => {
     return (

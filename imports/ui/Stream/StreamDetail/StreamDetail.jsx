@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Mongo } from 'meteor/mongo';
 import ReactQuill from 'react-quill';
 
-import postColl, { findById } from '/imports/api/postColl.js';
+import postColl, { getPost } from '/imports/api/postColl.js';
 
 import QuillReader from '../../components/QuillReader';
 import PostDetailView from '../../components/PostDetailView';
@@ -28,6 +28,6 @@ export default withTracker((props) => {
     const postId = Number(props.match.params.index);
     const defaultPost = { title: "Post Not Found :(" };
     return {
-        post: findById(postId) || defaultPost
+        post: getPost(postId) || defaultPost
     };
 })(StreamDetail);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 
-import { insertPost } from '../../api/postColl.js';
+import { makePost } from '../../api/postColl.js';
 
 // Post를 만들 수 있는 Form을 렌더링하는 Component
 // props = {}
@@ -36,7 +36,7 @@ class PostForm extends Component {
             contents,
             createdAt: new Date()
         };
-        insertPost(post);
+        makePost(post);
 
         titleNode.value = '';
         contentsNode.value = '';
