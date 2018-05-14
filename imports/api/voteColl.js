@@ -26,7 +26,7 @@ function getVote(voteId) {
 }
 
 function getAllVote(voteId) {
-    const ret = voteColl.find().fetch();
+    const ret = voteColl.find({}, { sort: { voteId: -1 } }).fetch();
     return ret;
 }
 
@@ -34,11 +34,16 @@ function removeVote(_id) {
     voteColl.remove(_id);
 }
 
-function voteForItem(_id, itemIdx) {
-    const field = 'poll.' + String(itemIdx) + '.count';
-    const query = {}; query[field] = 1;
-    voteColl.update(_id, { $inc: query });
+function doVote(voteId, selected) {
+    const _id = getVote(voteId)._id;
+    selected.forEach((element, index) => {
+        console.log(`${index} is ${element}`);
+        if(!element) return;
+        const field = 'poll.' + String(index) + '.count';
+        const query = {}; query[field] = 1;
+        voteColl.update(_id, { $inc: query });
+    });
 }
 
 export default voteColl;
-export { makeVote, getVote, getAllVote, removeVote, voteForItem };
+export { makeVote, getVote, getAllVote, removeVote, doVote };

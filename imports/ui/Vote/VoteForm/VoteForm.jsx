@@ -9,6 +9,11 @@ class VoteForm extends Component {
         this.titleInput = React.createRef();
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderCandidates = this.renderCandidates.bind(this);
+        this.addCandidate = this.addCandidate.bind(this);
+
+        this.state = { cands: 0 };
+        this.candInputs = [];
     }
 
     handleSubmit(event) {
@@ -23,7 +28,13 @@ class VoteForm extends Component {
         endDate.setHours(startDate.getHours()+1);
 
         const schedule = { start: startDate, end: endDate };
-        const poll = [ { itemIdx:0, name:'item1', count:0 }, { itemIdx:1, name:'item2', count:42 } ];
+
+        const poll = this.candInputs.map((ref, idx) => {
+            const nameNode = ref.current;
+            const name = nameNode.value.trim();
+
+            return { itemIdx: idx, name, count: 0 };
+        });
 
         const vote = {
             title,
@@ -33,6 +44,36 @@ class VoteForm extends Component {
         makeVote(vote);
 
         titleNode.value = '';
+        this.candInputs.forEach((ref) => {
+            const nameNode = ref.current;
+            nameNode.value = '';
+        });
+        this.candInputs = [];
+        this.setState({ cands: 0 });
+    }
+
+    addCandidate() {
+        const idx = this.state.cands;
+        this.setState((prevState) => (
+            { cands: prevState.cands+1 }   
+        ));
+        this.candInputs.push(React.createRef());
+    }
+
+    renderCandidates() {
+        const num = this.state.cands
+        console.log(num);
+        const resArr = new Array(num);
+        for(let i = 0; i < num; i++) {
+            resArr[i] = (
+            <input
+                type="text"
+                ref={this.candInputs[i]}
+                placeholder="Type in"
+                key={i}
+            />);
+        }
+        return resArr;
     }
 
     render() {
@@ -47,9 +88,12 @@ class VoteForm extends Component {
                             placeholder="Type a title"
                         />
                         <br />
+                        <ul>
+                            {this.renderCandidates()}
+                        </ul>
                     </form>
                     <br />
-                    <p> 투표 시간은 지금으로부터 1시간입니다. </p>
+                    {/*<p> 투표 시간은 지금으로부터 1시간입니다. </p>*/}
                 </div>
                 <div className="card-action">
                     <button
@@ -58,6 +102,12 @@ class VoteForm extends Component {
                         form="voteForm"
                         value="Submit">
                         Submit
+                    </button>
+                    <span> &nbsp; </span>
+                    <button
+                        className="btn waves-effect grey darken-4"
+                        onClick={this.addCandidate}>
+                        항목 추가하기
                     </button>
                 </div>
             </div>

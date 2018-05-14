@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 
-import voteColl, { getVote, voteForItem } from '../../../api/voteColl.js';
+import voteColl from '../../../api/voteColl.js';
 
 class VoteItem extends Component {
     constructor(props) {
         super(props);
 
-        this.handleClick = this.handleClick.bind(this);
+        this.state = { checked: true };
+        this.handleCheck = this.handleCheck.bind(this);
     }
 
-    handleClick(event) {
-        event.preventDefault();
+    // this.props.handleSelected
 
-        const voteId = this.props.voteId;
-        const _id = getVote(voteId)._id;
-        const item = this.props.item;
-
-        voteForItem(_id, item.itemIdx);
-        console.log("Voted!");
+    handleCheck(event) {
+        this.setState((prevState) => (
+            { checked: !prevState.checked }
+        ));
+        this.props.handleSelect(event);
+        console.log(this.state);
     }
 
     render() {
@@ -26,10 +26,10 @@ class VoteItem extends Component {
         return (
             <li className="collection-item">
                 <div>
-                    {`${item.itemIdx}.${item.name}: ${item.count}`}
-                    <a href="#" className="secondary-content" onClick={this.handleClick}>
-                        <i className="material-icons">done_outline</i>
-                    </a>
+                    <label className="">
+                        <input type="checkbox" onClick={this.handleCheck}/>
+                        <span>{`${item.name} (${item.count})`}</span>
+                    </label>
                 </div>
             </li>
         );
