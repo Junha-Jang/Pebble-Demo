@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { getAllVote } from '../../api/voteColl.js';
 
-import VoteSimpleView from '../components/VoteSimpleView';
+import VoteSimpleView from './VoteSimpleView';
 import VoteForm from './VoteForm/VoteForm';
 
 class VoteRoot extends Component {

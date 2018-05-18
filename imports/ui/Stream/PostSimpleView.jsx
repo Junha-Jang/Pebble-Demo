@@ -28,8 +28,7 @@ class PostSimpleView extends Component {
                 <div className="card-content white-text">
                     <span className="card-title"> {post.title} </span>
                     <p> {`Summary: ${post.summary}`} </p>
-                    <p> {`Created At: ${post.createdAt}`} </p>
-                    <p> {`Post id: ${post.postId}`} </p>
+                    <p> {`Created At: ${post.createdAt.toLocaleString()}`} </p>
                 </div>
                 
                 <div className="card-action">

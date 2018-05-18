@@ -6,7 +6,7 @@ import VoteRun from './VoteRun/VoteRun';
 
 const Vote = () => {
     return (
-        <div className="container">
+        <div>
             <header>
                 <h1>Vote</h1>
             </header>

@@ -9,7 +9,13 @@ class StudentList extends Component {
         //console.log(getAllStudents());
         return (
             <div>
-                <h1>Not made yet!</h1>
+                <header>
+                    <h1>Student List</h1>
+                </header>
+                
+                <div>
+                    <p>Not made yet!</p>
+                </div>
             </div>
         );
     }

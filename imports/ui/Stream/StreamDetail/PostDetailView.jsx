@@ -10,8 +10,7 @@ const PostDetailView = (props) => {
                 <span className="card-title"> {post.title} </span>
                 <p> {`Contents: ${post.contents}`} </p>
                 <br />
-                <p> {`Created At: ${post.createdAt}`} </p>
-                <p> {`Post id: ${post.postId}`} </p>
+                <p> {`Created At: ${post.createdAt.toLocaleString()}`} </p>
             </div>
             <div className="card-action">
                 <Link to="/stream" className="brown-text text-lighten-5">돌아가기</Link>

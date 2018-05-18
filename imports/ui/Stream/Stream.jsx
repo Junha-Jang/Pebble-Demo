@@ -6,7 +6,7 @@ import StreamDetail from './StreamDetail/StreamDetail';
 
 const Stream = () => {
     return (
-        <div className="container">
+        <div>
             <header>
                 <h1>Stream</h1>
             </header>

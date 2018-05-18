@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Test = () => (
-    <div className="container">
-        <h3>WTF??</h3>
+class Test extends Component {
+    render() {
+        return (
+            <div>
+                <header>
+                    <h3>Test Page</h3>
+                </header>
 
-        <form>
-            <input type="text" />
-            <input type="checkbox" />
-            <p>
-                <label>
+                <form>
+                    <input type="text" />
                     <input type="checkbox" />
-                    <span>Red</span>
-                </label>
-            </p>
-            <label>
-                <input type="checkbox" />
-                <span>Blue</span>
-            </label>
-        </form>
+                    <p>
+                        <label>
+                            <input type="checkbox" />
+                            <span>Red</span>
+                        </label>
+                    </p>
+                    <label>
+                        <input type="checkbox" />
+                        <span>Blue</span>
+                    </label>
+                </form>
 
-    </div>
-);
+            </div>
+        );
+    }
+}
 
 export default Test;

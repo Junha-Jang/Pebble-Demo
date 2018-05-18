@@ -3,8 +3,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import postColl from '../../api/postColl.js'
 
-import PostSimpleView from '../components/PostSimpleView';
-import PostForm from '../components/PostForm';
+import PostSimpleView from './PostSimpleView';
+import PostForm from './PostForm';
 
 class StreamRoot extends Component {
     renderPosts() {
@@ -31,8 +31,6 @@ class StreamRoot extends Component {
 }
 
 export default withTracker(() => {
-    console.log("STREAM ROOT");
-    console.log(postColl.find({}, { sort: { createdAt: -1 } }).fetch());
     return {
         posts: postColl.find({}, { sort: { createdAt: -1 } }).fetch()
     };

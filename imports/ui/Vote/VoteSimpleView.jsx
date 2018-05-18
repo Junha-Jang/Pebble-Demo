@@ -11,6 +11,7 @@ class VoteSimpleView extends Component {
         super(props);
 
         this.deleteThisVote = this.deleteThisVote.bind(this);
+        this.renderPoll = this.renderPoll.bind(this);
     }
 
     deleteThisVote(event) {
@@ -20,6 +21,12 @@ class VoteSimpleView extends Component {
         removeVote(_id);
     }
 
+    renderPoll() {
+        return this.props.vote.poll.map((cand) => (
+            <p key={cand.itemIdx}> {`  ${cand.name}: ${cand.count}표`} </p>
+        ));
+    }
+
     render() {
         const vote = this.props.vote;
         const sche = vote.schedule;
@@ -27,8 +34,8 @@ class VoteSimpleView extends Component {
             <div className="card grey darken-3">
                 <div className="card-content white-text">
                     <span className="card-title"> {vote.title} </span>
+                    {this.renderPoll()}
                     <p> {`Schedule: ${sche.start.toLocaleString()} ~ ${sche.end.toLocaleString()}`} </p>
-                    <p> {`Vote Id: ${vote.voteId}`} </p>
                 </div>
                 
                 <div className="card-action">
