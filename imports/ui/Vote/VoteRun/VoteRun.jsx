@@ -76,23 +76,35 @@ class VoteRun extends Component {
 
     render() {
         const vote = this.props.vote;
-        return (
-            <div>
-                <h3>{`Voting about ${vote.title}`}</h3>
-                <form id="voteRun" onSubmit={this.handleSubmit}>
-                    <ul className="collection">
-                        {this.renderItems()}
-                    </ul>
-                    <button
-                        className="btn waves-effect grey darken-4"
-                        type="submit"
-                        form="voteRun"
-                        value="Submit">
-                        투표하기
-                    </button>
-                </form>
-            </div>
-        );
+
+        const startDate = vote.schedule.start;
+        const endDate = vote.schedule.end;
+        const nowDate = new Date();
+
+        const valid = startDate <= nowDate && nowDate <= endDate;
+
+        if(!valid) {
+            return <h3>투표 가능한 기간이 아닙니다.</h3>
+        }
+        else {
+            return (
+                <div>
+                    <h3>{`${vote.title}에 투표하기`}</h3>
+                    <form id="voteRun" onSubmit={this.handleSubmit}>
+                        <ul className="collection">
+                            {this.renderItems()}
+                        </ul>
+                        <button
+                            className="btn waves-effect grey darken-4"
+                            type="submit"
+                            form="voteRun"
+                            value="Submit">
+                            투표하기
+                        </button>
+                    </form>
+                </div>
+            );
+        }
     }
 }
 

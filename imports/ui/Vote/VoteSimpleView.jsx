@@ -39,7 +39,9 @@ class VoteSimpleView extends Component {
                 </div>
                 
                 <div className="card-action">
-                    <Link to={`/vote/${vote.voteId}`} className="brown-text text-lighten-5">투표하기</Link>
+                    {
+                        <Link to={`/vote/${vote.voteId}`} className="brown-text text-lighten-5 disabled">투표하기</Link>
+                    }
                     <a href="#" className="brown-text text-lighten-5" onClick={this.deleteThisVote}>지우기</a>
                 </div>
             </div>

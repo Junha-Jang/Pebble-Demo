@@ -7,7 +7,7 @@ class Header extends Component {
             <nav className="nav-extended">
                 <div className="nav-wrapper grey darken-3">
                     <a href="/" className="brand-logo left">
-                        &nbsp;&nbsp;Pebble - Demo&nbsp;&nbsp;
+                        &nbsp;Pebble&nbsp;
                     </a>
                     
                     <ul id="nav-mobile" className="right">

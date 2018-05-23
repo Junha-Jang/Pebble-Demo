@@ -61,8 +61,7 @@ class VoteForm extends Component {
     }
 
     renderCandidates() {
-        const num = this.state.cands
-        console.log(num);
+        const num = this.state.cands;
         const resArr = new Array(num);
         for(let i = 0; i < num; i++) {
             resArr[i] = (

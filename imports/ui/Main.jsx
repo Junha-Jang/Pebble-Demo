@@ -13,7 +13,7 @@ const Main = () => {
         <Switch>
             <Route
                 exact path="/"
-                render={() => <Redirect to="/vote" />}
+                render={() => <Redirect to="/stream" />}
             />
             <Route path="/stream" component={Stream} />
             <Route path="/stulist" component={StudentList} />
